@@ -10,10 +10,10 @@ int cntDecode(string str){
     return 0;
   }
 
-  str = " " + str;
+  str = ' ' + str;
   vector<int> dp(str.length(), 0);
   dp[0] = dp[1] = 1;
-  for(int i = 1; i < str.length(); i++){
+  for(int i = 2; i < str.length(); i++){
     if(str[i] == '0'){
       if(str[i - 1] < '1' || str[i - 1] > '2'){
         return 0;
