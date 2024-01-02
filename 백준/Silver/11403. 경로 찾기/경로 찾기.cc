@@ -4,27 +4,17 @@
 using namespace std;
 
 vector<vector<int>> solution(int n, vector<vector<int>> &adj_matrix){
-  vector<vector<int>> dist = adj_matrix;
-  
   for(int k = 0; k < n; k++){
     for(int i = 0; i < n; i++){
       for(int j = 0; j < n; j++){
-        if(dist[i][k] && dist[k][j]){
-          dist[i][j] = 1;
+        if(adj_matrix[i][k] && adj_matrix[k][j]){
+          adj_matrix[i][j] = 1;
         }
       }
     }
   }
 
-  for(int k = 0; k < n; k++){
-    for(int i = 0; i < n; i++){
-      if(dist[i][k] && dist[k][i]){
-        dist[i][i] = 1;
-      }
-    }
-  }
-
-  return dist;
+  return adj_matrix;
 }
 
 int main(){
