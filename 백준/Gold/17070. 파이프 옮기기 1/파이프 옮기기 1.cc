@@ -23,15 +23,9 @@ void dfs(int r, int c, int dir){
       diagonal = false;
       continue;
     }
-    if(i == 2){
-      break;
-    }
-    if(dir == 2 || dir == i){
+    if((i != 2 && (dir ==  i || dir == 2)) || (i == 2 && diagonal)){
       dfs(nr, nc, i);
     }
-  }
-  if(diagonal){
-    dfs(r + 1, c + 1, 2);
   }
   return;
 }
