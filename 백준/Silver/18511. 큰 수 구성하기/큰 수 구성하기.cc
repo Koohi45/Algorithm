@@ -1,39 +1,32 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
-bool isPossible(int number, vector<int> &set){
-    while(number){
-        int remain = number % 10;
-        number /= 10;
-        if(find(set.begin(), set.end(), remain) == set.end()){
-            return false;
-        }
-    }
-    return true;
-}
+int n, m, answer = 0;
+vector<int> num;
 
-int findMaxNumber(int n, vector<int> &set){
-    int ans = 0;
-    for(int i = 0; i <= n; i++){
-        if(isPossible(i, set)){
-            ans = i;
-        }
+void backtracking(int curr, int digit){
+    if(curr > n){
+        return;
     }
-    return ans;
+
+    answer = max(answer, curr);
+    for(int i = 0; i < m; i++){
+        backtracking(curr + num[i] * digit, digit * 10);
+    }
 }
 
 int main(){
-    int n, size;
+    cin >> n >> m;
+    num.assign(m, 0);
 
-    cin >> n >> size;
-    vector<int> set(size);
-    for(int i = 0; i < size; i++){
-        cin >> set[i];
+    for(int i = 0; i < m; i++){
+        cin >> num[i];
     }
 
-    cout << findMaxNumber(n, set);
+    backtracking(0, 1);
+
+    cout << answer;
     return 0;
 }
