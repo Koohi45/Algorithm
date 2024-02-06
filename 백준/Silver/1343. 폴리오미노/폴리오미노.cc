@@ -15,7 +15,6 @@ string polynomio(string input){
                 return "-1";
             }
             result += '.';
-            cnt = 0;
         }
         if(cnt == 4){
             result += "AAAA";
