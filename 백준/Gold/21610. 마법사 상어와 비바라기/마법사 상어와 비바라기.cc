@@ -56,7 +56,7 @@ int getWater(int n, vector<vector<int>> &field, vector<ci> &move){
             for(int k = 0; k < n; k++){
                 if(field[j][k] >= 2 && isNotCloud(j, k, cloud)){
                     new_cloud.push_back({j, k});
-                    field[j][k] = max(field[j][k] - 2, 0);
+                    field[j][k] -= 2;
                 }
             }
         }
