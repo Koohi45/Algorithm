@@ -12,9 +12,6 @@ int main(){
     map<string, double> tree_count;
     
     while(getline(cin, tree)){
-        if(tree == ""){
-            break;
-        }
         cnt++;
         tree_names.insert(tree);
         tree_count[tree]++;
