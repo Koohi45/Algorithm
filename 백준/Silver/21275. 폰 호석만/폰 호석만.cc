@@ -10,7 +10,11 @@ const int MAX_DIGIT = 36;
 int findMinDigit(string str){
     int digit = 0;
     for(int i = 0; i < str.length(); i++){
-        digit = max(digit, str[i] - 'a' + 11);
+        if(str[i] >= 0 && str[i] <= '9'){
+            digit = max(digit, str[i] - '0');
+        } else {
+            digit = max(digit, str[i] - 'a' + 11);
+        }
     }
     return digit;
 }
@@ -18,7 +22,13 @@ int findMinDigit(string str){
 ll changeDecimalNumber(string str, int digit){
     ll result = 0;
     for(int i = 0; i < str.length(); i++){
-        result += (str[i] - 'a' + 10) * pow(digit, str.length() - i - 1);
+        int num;
+        if(str[i] >= '0' && str[i] <= '9'){
+            num = str[i] - '0';
+        } else {
+            num = str[i] - 'a' + 10;
+        }
+        result += num * pow(digit, str.length() - i - 1);
     }
     return result;
 }
