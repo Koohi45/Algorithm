@@ -32,6 +32,9 @@ int maxSushi(int n, int d, int k, int c, vector<int> &belt){
 }
 
 int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    
     int n, d, k, c;
     cin >> n >> d >> k >> c;
 
