@@ -7,7 +7,7 @@ using namespace std;
 
 typedef tuple<int, int, int> tp;
 
-int bfs(int m, int n, int h, vector<tp> &ripened, vector<vector<vector<int>>> &box){
+int bfs(int m, int n, int h,int cnt_unripened, vector<tp> &ripened, vector<vector<vector<int>>> &box){
     int dx[] = {1, -1, 0, 0, 0, 0};
     int dy[] = {0, 0, 1, -1, 0, 0};
     int dz[] = {0, 0, 0, 0, 1, -1};
@@ -34,17 +34,12 @@ int bfs(int m, int n, int h, vector<tp> &ripened, vector<vector<vector<int>>> &b
             }
             box[nz][ny][nx] = t + 1;
             q.push({nx, ny, nz});
+            cnt_unripened--;
         }
     }
 
-    for(int z = 0; z < h; z++){
-        for(int y = 0; y < n; y++){
-            for(int x = 0; x < m; x++){
-                if(box[z][y][x] == 0){
-                    return -1;
-                }
-            }
-        }
+    if(cnt_unripened){
+        return -1;
     }
     return t - 1;
 }
@@ -55,17 +50,20 @@ int main(){
 
     vector<vector<vector<int>>> box(h, vector<vector<int>>(n, vector<int>(m)));
     vector<tp> ripened;
+    int cnt_unripened = 0;
     for(int z = 0; z < h; z++){
         for(int y = 0; y < n; y++){
             for(int x = 0; x < m; x++){
                 cin >> box[z][y][x];
                 if(box[z][y][x] == 1){
                     ripened.push_back({x, y, z});
+                } else if(box[z][y][x] == 0){
+                    cnt_unripened++;
                 }
             }
         }
     }
 
-    cout << bfs(m, n, h, ripened, box);
+    cout << bfs(m, n, h, cnt_unripened, ripened, box);
     return 0;
 }
