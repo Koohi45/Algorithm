@@ -7,18 +7,12 @@ int main(){
     cin >> n >> k;
 
     int cnt = 0;
-    for(int i = 0; i <= n; i++){
-        if(i / 10 ==  k || i % 10 == k){
-            cnt += 60 * 60;
-            continue;
-        }
-        for(int j = 0; j <= 59; j++){
-            if(j / 10 == k || j % 10 == k){
-                cnt += 60;
-                continue;
-            }
-            for(int l = 0; l <= 59; l++){
-                if(l / 10 == k || l % 10 == k){
+    for(int hour = 0; hour <= n; hour++){
+        for(int minute = 0; minute < 60; minute++){
+            for(int second = 0; second < 60; second++){
+                if(hour / 10 == k || hour % 10 == k 
+                || minute / 10 == k || minute % 10 == k 
+                || second / 10 == k || second % 10 == k){
                     cnt++;
                 }
             }
