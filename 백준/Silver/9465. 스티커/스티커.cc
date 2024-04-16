@@ -17,6 +17,10 @@ int maxStickers(int n, vector<vector<int>> &stickers){
 }
 
 int main(){
+    ios_base :: sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    
     int t, n;
     cin >> t;
     while(t--){
